@@ -1,9 +1,8 @@
 import { expect, test } from "@playwright/test";
-import TodoApi from "../apis/TodoApis";
 import User from "../models/User";
+import NewTodoPage from "../pages/NewTodoPage";
 import SignupPage from "../pages/SignupPage";
 import TodoPage from "../pages/TodoPage";
-import NewTodoPage from "../pages/NewTodoPage";
 
 test("should be able to add a new todo", async ({ page, request, context }) => {
   const user = new User();
@@ -27,5 +26,5 @@ test("should be able to delete a todo", async ({ page, request, context }) => {
   await todoPage.load(page);
   await todoPage.deleteTodo(page);
   const noTodosMessage = await todoPage.getNoTodoMessage(page);
-  await expect(noTodosMessage).toBeVisible({ timeout: 5000 });
+  await expect(noTodosMessage).toBeVisible();
 });
